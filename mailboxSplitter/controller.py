@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import filedialog
 from time import sleep
-import main
+from mailboxSplitter import main
+import os
 
 def splitter():
     # create a hidden window
@@ -12,7 +13,7 @@ def splitter():
     # verify if the user chooses a file
     if file_path: 
         print(f"Selected file: {file_path}")
-        print("\033[1mchoose a folder:\033[0m")
+        print("\033[1mChoose a folder:\033[0m")
         #The code will stop for two seconds
         sleep(2)
         #Choose a folder to save partitions
@@ -20,6 +21,8 @@ def splitter():
         # verify if the user chooses a file
         if output_dir:
             print(f"Selected folder: {output_dir}")
+            files = os.path.getsize(file_path)
+            print(f"The file will be cut to {int(files/52428000) + 1} files")
             #start splitter
             main.split_mbox(file_path,output_dir)
         else:
@@ -31,8 +34,8 @@ def splitter():
 
 def start():
     while True:
-        print("[1]start splitter\n\n[0]exit")
-        front = input("")
+        print("[1]Start splitter\n\n[0]Exit")
+        front = input("Choose")
         if front == "1":
             splitter()
         elif front == "0":

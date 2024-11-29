@@ -1,3 +1,3 @@
 from mailboxSplitter import controller
 
-controller.start()
+controller.star
