@@ -22,7 +22,7 @@ def splitter():
         if output_dir:
             print(f"Selected folder: {output_dir}")
             files = os.path.getsize(file_path)
-            print(f"The file will be cut to {int(files/52428000) + 1} files")
+            print(f"The file will be cut to {int(files/(50*1024*1024)) + 1} files")
             #start splitter
             main.split_mbox(file_path,output_dir)
         else:
@@ -35,7 +35,7 @@ def splitter():
 def start():
     while True:
         print("[1]Start splitter\n\n[0]Exit")
-        front = input("Choose")
+        front = input("Choose:\n")
         if front == "1":
             splitter()
         elif front == "0":

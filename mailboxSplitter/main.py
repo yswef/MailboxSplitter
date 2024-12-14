@@ -1,6 +1,6 @@
 #  *Script to Split by Email Co
 import os 
-
+import playsound
 
 
 def split_mbox(input_file, output_dir):
@@ -15,7 +15,7 @@ def split_mbox(input_file, output_dir):
 
             for line in f:
                 file_size = os.path.getsize(path)#file size
-                if file_size >= 52428000:
+                if file_size >= 50*1024*1024:
                     current_file.close()
                     file_count = file_count + 1
                     path = os.path.join(output_dir, f'part-{file_count}.mbox')
@@ -26,6 +26,7 @@ def split_mbox(input_file, output_dir):
                 if l == 6:
                     l = 0
             current_file.close()
+            playsound.playsound("mailboxSplitter/sound.wav")
             print("split comblet")
             
 
